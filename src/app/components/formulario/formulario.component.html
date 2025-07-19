@@ -1,0 +1,151 @@
+<!-- formulario/formulario.component.html -->
+<div class="container form-container">
+    <h2 class="form-title">Identificación</h2>
+
+    <form class="custom-form" [formGroup]="form" (ngSubmit)="validarCampos()">
+        <div class="row">
+            <div class="col-md-4">
+                <label>Nombre*</label>
+                <input formControlName="nombre" class="form-control input-custom" type="text">
+                <div class="text-danger" *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched">
+                    Solo letras permitidas.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label>Primer apellido*</label>
+                <input formControlName="primerApellido" class="form-control input-custom" type="text">
+                <div class="text-danger"
+                    *ngIf="form.get('primerApellido')?.invalid && form.get('primerApellido')?.touched">
+                    Solo letras permitidas.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label>Segundo apellido*</label>
+                <input formControlName="segundoApellido" class="form-control input-custom" type="text">
+                <div class="text-danger"
+                    *ngIf="form.get('segundoApellido')?.invalid && form.get('segundoApellido')?.touched">
+                    Solo letras permitidas.
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <label>CURP*</label>
+                <input formControlName="curp" class="form-control input-custom" type="text" maxlength="18">
+                <div class="text-danger" *ngIf="form.get('curp')?.invalid && form.get('curp')?.touched">
+                    CURP inválido.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label>RFC (con homoclave)*</label>
+                <input formControlName="rfc" class="form-control input-custom" type="text" maxlength="13">
+                <div class="text-danger" *ngIf="form.get('rfc')?.invalid && form.get('rfc')?.touched">
+                    RFC inválido.
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-3">
+                <label>Código postal*</label>
+                <input formControlName="codigoPostal" class="form-control input-custom" type="text" maxlength="5">
+                <div class="text-danger" *ngIf="form.get('codigoPostal')?.invalid && form.get('codigoPostal')?.touched">
+                    5 números requeridos.
+                </div>
+            </div>
+            <div class="col-md-9">
+                <label>Calle*</label>
+                <input formControlName="calle" class="form-control input-custom" type="text">
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-3">
+                <label>Número exterior*</label>
+                <input formControlName="numeroExterior" class="form-control input-custom" type="text" maxlength="5">
+                <div class="text-danger"
+                    *ngIf="form.get('numeroExterior')?.invalid && form.get('numeroExterior')?.touched">
+                    Solo números hasta 5 dígitos.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label>Número interior*</label>
+                <input formControlName="numeroInterior" class="form-control input-custom" type="text" maxlength="10">
+                <div class="text-danger"
+                    *ngIf="form.get('numeroInterior')?.invalid && form.get('numeroInterior')?.touched">
+                    Máximo 10 caracteres alfanuméricos.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label>Estado*</label>
+                <input formControlName="estado" class="form-control input-custom" type="text">
+                <div class="text-danger" *ngIf="form.get('estado')?.invalid && form.get('estado')?.touched">
+                    Solo letras permitidas.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label>Delegación / Municipio*</label>
+                <input formControlName="delegacion" class="form-control input-custom" type="text">
+                <div class="text-danger" *ngIf="form.get('delegacion')?.invalid && form.get('delegacion')?.touched">
+                    Solo letras permitidas.
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <label>Colonia*</label>
+                <input formControlName="colonia" class="form-control input-custom" type="text">
+                <div class="text-danger" *ngIf="form.get('colonia')?.invalid && form.get('colonia')?.touched">
+                    Solo letras permitidas.
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <button class="btn btn-form-submit" type="submit">Guardar</button>
+        </div>
+    </form>
+</div>
+<br>
+<div class="container table-container">
+    <h3 class="table-title">Usuarios desde API</h3>
+    <table class="table custom-table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Website</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="customtr" *ngFor="let usuario of usuarios">
+                <td>{{ usuario.id }}</td>
+                <td>{{ usuario.name }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.website }}</td>
+                <td>
+                    <button class="btn btn-link p-0 text-primary icon-plain" title="Coordenadas" (click)="verCoordenadas(usuario)">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </button>
+                    <button class="btn btn-link p-0 text-success me-2 icon-plain" style="margin-left: 10px;" title="Editar">
+                        <i class="bi bi-pencil-fill"></i>
+                    </button>
+                    <button class="btn btn-link p-0 text-danger me-2 icon-plain" title="Borrar">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<div class="container mt-4">
+    <h3 class="text-center">Mapa Coordenadas</h3>
+    <div id="map" style="height: 400px;"></div>
+</div>
+<br>
