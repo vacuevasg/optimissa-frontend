@@ -24,3 +24,9 @@ npm install
 ng serve --open
 ```
 
+## Evaluación
+
+```bash
+http://localhost:4200/
+```
+
