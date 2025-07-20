@@ -7,6 +7,12 @@ Proyecto Angular con:
 * Mapa Leaflet con coordenadas.
 * Envío de datos a `http://httpbin.org/post`.
 
+El proyecto se encuentra desplegado en mi infraestructura privada de AWS para su conveniencia. Para probarlo, puede seguir las instrucciones de despliegue o utilizar la siguiente URL:
+
+```bash
+https://optimissa-front.proyectosvc.com/
+```
+
 ## Requisitos
 
 * Node 22
